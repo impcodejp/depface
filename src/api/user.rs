@@ -5,9 +5,9 @@ use std::sync::Arc;
 use crate::services::api_service::ApiService;
 use crate::models::user::CreateUserRequestFromFrontend;
 
-/// ユーザー登録エンドポイント
+/// ユーザー登録ハンドラー
 pub async fn register_user_handler(
-    State(service): State<Arc<ApiService>>, // Serviceを共有状態から取得
+    State(service): State<Arc<ApiService>>,
     Json(payload): Json<CreateUserRequestFromFrontend>,
 ) -> impl IntoResponse {
     match service.register_user(payload).await {

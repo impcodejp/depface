@@ -23,3 +23,7 @@ dotenvy = "0.15"
 thiserror = "1.0"
 # ハッシュ文字列生成
 password-hash = "0.5"
+# ロギングの生成
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt", "chrono"] }
+tracing-appender = "0.2"
