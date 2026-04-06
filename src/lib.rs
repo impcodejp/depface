@@ -1,7 +1,7 @@
 pub mod api;
-pub mod tasks;
-pub mod models;
-pub mod db;
 pub mod auth;
-pub mod services;
+pub mod db;
 pub mod middleware;
+pub mod models;
+pub mod services;
+pub mod tasks;

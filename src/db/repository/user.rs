@@ -1,7 +1,7 @@
 // src/db/repository/user.rs
 
+use crate::models::user::{CreateUserRequest, User};
 use sqlx::PgPool;
-use crate::models::user::{ User, CreateUserRequest };
 
 pub struct UserRepository {
     pub pool: PgPool,
@@ -32,18 +32,18 @@ impl UserRepository {
 
     // user_id でユーザーを検索
     pub async fn find_by_user_id(&self, user_id: &str) -> Result<Option<User>, sqlx::Error> {
-    sqlx::query_as!(
-        User,
-        r#"
-        SELECT id, user_id, user_name, email, password_hash, created_at, updated_at
-        FROM main.users
-        WHERE user_id = $1
-        "#,
-        user_id
-    )
-    .fetch_optional(&self.pool)
-    .await
-}
+        sqlx::query_as!(
+            User,
+            r#"
+            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at
+            FROM main.users
+            WHERE user_id = $1
+            "#,
+            user_id
+        )
+        .fetch_optional(&self.pool)
+        .await
+    }
 }
 
 #[cfg(test)]
@@ -84,8 +84,12 @@ mod tests {
         let result = repo.create_user(test_user1).await;
 
         // 1.3. 検証
-        assert!(result.is_ok(), "ユーザー作成に失敗しました: {:?}", result.err());
-        
+        assert!(
+            result.is_ok(),
+            "ユーザー作成に失敗しました: {:?}",
+            result.err()
+        );
+
         let created_user = result.unwrap();
         assert_eq!(created_user.user_name, "テストユーザー");
         assert!(created_user.id > 0); // IDが自動採番されているか
@@ -103,8 +107,11 @@ mod tests {
         let result2 = repo.create_user(test_user2).await;
 
         // 2.3. 検証
-        assert!(result2.is_err(), "重複したuser_idでユーザー作成が成功してしまいました");
-        
+        assert!(
+            result2.is_err(),
+            "重複したuser_idでユーザー作成が成功してしまいました"
+        );
+
         // 3. 重複メールアドレスのテスト
         let test_user3 = CreateUserRequest {
             user_id: format!("{}3", unique_id), // 異なるuser_idを使用
@@ -117,7 +124,9 @@ mod tests {
         let result3 = repo.create_user(test_user3).await;
 
         // 3.3. 検証
-        assert!(result3.is_err(), "重複したemailでユーザー作成が成功してしまいました");
-
+        assert!(
+            result3.is_err(),
+            "重複したemailでユーザー作成が成功してしまいました"
+        );
     }
 }

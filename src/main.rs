@@ -3,49 +3,50 @@
 mod api;
 mod auth;
 mod db;
-mod models;
-mod services;
-mod router;
 mod logging;
+mod middleware;
+mod models;
+mod router;
+mod services;
 
 use std::sync::Arc;
-use tracing::{info, error, debug};
+use tracing::info;
 
-use crate::db::pool::establish_connection;
 use crate::db::repository::user::UserRepository;
-use crate::services::api_service::ApiService;
+use crate::db::token_blacklist::TokenBlacklistRepository;
 use crate::router::create_router;
+use crate::services::api_service::ApiService;
 
 #[tokio::main]
 async fn main() {
-    // .envファイルから環境変数を読み込む
+    // 1. 初期設定（環境変数・ログ）
     dotenvy::dotenv().ok();
-    let _guard=logging::init();
+    let _guard = logging::init();
 
     info!("アプリケーションを起動しています...");
-    info!("環境変数を読み込みました。");
-    debug!("データベース接続情報: {:?}", std::env::var("DATABASE_URL").unwrap_or_else(|_| "未設定".to_string()));
-    // データベース接続プールを確立
-    let pool = establish_connection().await;
 
+    // 2. データベース（PostgreSQL）接続確立
+    let pool = db::establish_connection().await;
     info!("データベース接続プールを確立しました。");
 
-    // リポジトリとサービスを初期化
-    info!("リポジトリとサービスを初期化しています...");
-    let user_repo = UserRepository::new(pool);
-    let api_service = ApiService::new(user_repo);
+    // 3. リポジトリとサービスの初期化
+    let user_repo = UserRepository::new(pool.clone());
+    let blacklist_repo = TokenBlacklistRepository::new(pool);
+    let api_service = ApiService::new(user_repo, blacklist_repo);
+
+    // 共有状態（State）として Arc に包む
     let shared_state = Arc::new(api_service);
 
-    // ルーターを作成
+    // 4. ルーターの作成とサーバー起動
     info!("apiルーターを作成しています...");
     let app = create_router(shared_state);
 
-    info!("ルーターの作成が完了しました。サーバーを起動します...");
-    // サーバーを起動
     let addr = "127.0.0.1:3000";
-    let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
+    let listener = tokio::net::TcpListener::bind(addr)
+        .await
+        .expect("Failed to bind address");
 
-    info!("🚀 サーバー起動中: http://{}", addr);
+    info!("サーバー起動中: http://{}", addr);
 
     axum::serve(listener, app).await.unwrap();
 }
