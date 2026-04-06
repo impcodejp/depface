@@ -5,6 +5,8 @@ use crate::models::user::{CreateUserRequest,
     CreateUserRequestFromFrontend, 
     CreateUserResponseForFrontend
 };
+use crate::auth::{verify_password, generate_token};
+use crate::models::auth::{LoginRequest, LoginResponse};
 use crate::auth::hash_password;
 
 pub struct ApiService {
@@ -51,4 +53,31 @@ impl ApiService {
             email: saved_user.email,
         })
     }
+
+    // ログイン処理
+    pub async fn login_user(
+    &self,
+    req: LoginRequest,
+) -> Result<LoginResponse, String> {
+    // 1. user_idでユーザーを検索
+    let user = self.user_repo
+        .find_by_user_id(&req.user_id)
+        .await
+        .map_err(|e| format!("DBエラー: {}", e))?
+        .ok_or_else(|| "ユーザーIDまたはパスワードが正しくありません".to_string())?;
+
+    // 2. パスワード検証
+    let is_valid = verify_password(&req.password, &user.password_hash)?;
+    if !is_valid {
+        return Err("ユーザーIDまたはパスワードが正しくありません".to_string());
+    }
+
+    // 3. JWTを生成
+    let token = generate_token(&user.user_id)?;
+
+    Ok(LoginResponse {
+        token,
+        user_id: user.user_id,
+    })
+}
 }

@@ -29,6 +29,21 @@ impl UserRepository {
         .fetch_one(&self.pool)
         .await
     }
+
+    // user_id でユーザーを検索
+    pub async fn find_by_user_id(&self, user_id: &str) -> Result<Option<User>, sqlx::Error> {
+    sqlx::query_as!(
+        User,
+        r#"
+        SELECT id, user_id, user_name, email, password_hash, created_at, updated_at
+        FROM main.users
+        WHERE user_id = $1
+        "#,
+        user_id
+    )
+    .fetch_optional(&self.pool)
+    .await
+}
 }
 
 #[cfg(test)]
