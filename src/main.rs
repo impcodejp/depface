@@ -16,6 +16,7 @@ use crate::db::repository::user::UserRepository;
 use crate::db::token_blacklist::TokenBlacklistRepository;
 use crate::router::create_router;
 use crate::services::api_service::ApiService;
+use crate::services::system_service::init_service::user_check_and_first_user_registration;
 
 #[tokio::main]
 async fn main() {
@@ -36,6 +37,9 @@ async fn main() {
 
     // 共有状態（State）として Arc に包む
     let shared_state = Arc::new(api_service);
+
+    // ユーザー登録確認
+    user_check_and_first_user_registration(&shared_state).await;
 
     // 4. ルーターの作成とサーバー起動
     info!("apiルーターを作成しています...");

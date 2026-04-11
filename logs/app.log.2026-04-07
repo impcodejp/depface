@@ -1,0 +1,367 @@
+2026-04-07 09:38:24  INFO depface: アプリケーションを起動しています...
+2026-04-07 09:38:24  INFO depface: データベース接続プールを確立しました。
+2026-04-07 09:38:24 DEBUG sqlx::query: summary="SELECT COUNT(*) as count …" db.statement="\n\n\n            SELECT COUNT(*) as count FROM main.users\n            \n" rows_affected=1 rows_returned=1 elapsed=6.4444ms elapsed_secs=0.0064444
+2026-04-07 09:38:24  INFO depface: apiルーターを作成しています...
+2026-04-07 09:38:24  INFO depface: サーバー起動中: http://127.0.0.1:3000
+2026-04-07 09:39:48  INFO depface: アプリケーションを起動しています...
+2026-04-07 09:39:48  INFO depface: データベース接続プールを確立しました。
+2026-04-07 09:39:48 DEBUG sqlx::query: summary="SELECT COUNT(*) as count …" db.statement="\n\n\n            SELECT COUNT(*) as count FROM main.users\n            \n" rows_affected=1 rows_returned=1 elapsed=4.3854ms elapsed_secs=0.0043854
+2026-04-07 09:39:48 DEBUG sqlx::query: summary="INSERT INTO main.users (user_id, …" db.statement="\n\n\n            INSERT INTO main.users (user_id, user_name, email, password_hash)\n            VALUES ($1, $2, $3, $4)\n            RETURNING id, user_id, user_name, email, password_hash, created_at, updated_at\n            \n" rows_affected=1 rows_returned=1 elapsed=3.8484ms elapsed_secs=0.0038484
+2026-04-07 09:39:48  INFO depface: apiルーターを作成しています...
+2026-04-07 09:39:48  INFO depface: サーバー起動中: http://127.0.0.1:3000
+2026-04-07 09:43:11  INFO depface: アプリケーションを起動しています...
+2026-04-07 09:43:11  INFO depface: データベース接続プールを確立しました。
+2026-04-07 09:43:11 DEBUG sqlx::query: summary="SELECT COUNT(*) as count …" db.statement="\n\n\n            SELECT COUNT(*) as count FROM main.users\n            \n" rows_affected=1 rows_returned=1 elapsed=4.6442ms elapsed_secs=0.0046442
+2026-04-07 09:43:11  INFO depface: apiルーターを作成しています...
+2026-04-07 09:43:11  INFO depface: サーバー起動中: http://127.0.0.1:3000
+2026-04-07 16:33:01  INFO depface: アプリケーションを起動しています...
+2026-04-07 16:33:01  INFO depface: データベース接続プールを確立しました。
+2026-04-07 16:33:01 DEBUG sqlx::query: summary="SELECT COUNT(*) as count …" db.statement="\n\n\n            SELECT COUNT(*) as count FROM main.users\n            \n" rows_affected=1 rows_returned=1 elapsed=3.8426ms elapsed_secs=0.0038426
+2026-04-07 16:33:01  INFO depface: apiルーターを作成しています...
+2026-04-07 16:33:01  INFO depface: サーバー起動中: http://127.0.0.1:3000
+2026-04-07 16:33:09  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 16:33:09 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 16:33:09 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=3.864ms elapsed_secs=0.003864
+2026-04-07 16:33:10 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 16:33:10  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 16:33:14 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=5.044ms elapsed_secs=0.005044
+2026-04-07 16:33:14 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 16:33:14  INFO depface::api::auth: ログアウトリクエスト受信 user_id=mjscs
+2026-04-07 16:33:14 DEBUG depface::services::api_service::auth: トークンをブラックリストに登録 user_id=mjscs
+2026-04-07 16:33:14 DEBUG sqlx::query: summary="INSERT INTO main.token_blacklist (token, …" db.statement="\n\n\n            INSERT INTO main.token_blacklist (token, expires_at)\n            VALUES ($1, $2)\n            ON CONFLICT (token) DO NOTHING\n            \n" rows_affected=1 rows_returned=0 elapsed=8.5605ms elapsed_secs=0.0085605
+2026-04-07 16:33:14  INFO depface::api::auth: ログアウト成功 user_id=mjscs
+2026-04-07 16:33:37  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 16:33:37 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 16:33:37 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=448µs elapsed_secs=0.000448
+2026-04-07 16:33:37 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 16:33:37  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 16:34:39 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=618.8µs elapsed_secs=0.0006188
+2026-04-07 16:34:39 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 16:34:39  INFO depface::api::user: ユーザー登録リクエスト受信 user_id=user01
+2026-04-07 16:34:39 DEBUG depface::services::api_service::user: パスワードハッシュ化開始 user_id=user01
+2026-04-07 16:34:39 DEBUG sqlx::query: summary="INSERT INTO main.users (user_id, …" db.statement="\n\n\n            INSERT INTO main.users (user_id, user_name, email, password_hash)\n            VALUES ($1, $2, $3, $4)\n            RETURNING id, user_id, user_name, email, password_hash, created_at, updated_at\n            \n" rows_affected=1 rows_returned=1 elapsed=4.3407ms elapsed_secs=0.0043407
+2026-04-07 16:34:39 DEBUG depface::services::api_service::user: DBへのユーザー保存完了 user_id=user01
+2026-04-07 16:34:39  INFO depface::api::user: ユーザー登録成功 user_id=user01
+2026-04-07 16:34:44 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=466.9µs elapsed_secs=0.0004669
+2026-04-07 16:34:44 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 16:34:44  INFO depface::api::auth: ログアウトリクエスト受信 user_id=mjscs
+2026-04-07 16:34:44 DEBUG depface::services::api_service::auth: トークンをブラックリストに登録 user_id=mjscs
+2026-04-07 16:34:44 DEBUG sqlx::query: summary="INSERT INTO main.token_blacklist (token, …" db.statement="\n\n\n            INSERT INTO main.token_blacklist (token, expires_at)\n            VALUES ($1, $2)\n            ON CONFLICT (token) DO NOTHING\n            \n" rows_affected=1 rows_returned=0 elapsed=2.7119ms elapsed_secs=0.0027119
+2026-04-07 16:34:44  INFO depface::api::auth: ログアウト成功 user_id=mjscs
+2026-04-07 16:34:54  INFO depface::api::auth: ログインリクエスト受信 user_id=user01
+2026-04-07 16:34:54 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=user01
+2026-04-07 16:34:54 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=486.1µs elapsed_secs=0.0004861
+2026-04-07 16:34:55  WARN depface::services::api_service::auth: パスワード不一致 user_id=user01
+2026-04-07 16:34:55  WARN depface::api::auth: ログイン失敗 error=ユーザーIDまたはパスワードが正しくありません
+2026-04-07 16:35:04  INFO depface::api::auth: ログインリクエスト受信 user_id=user01
+2026-04-07 16:35:04 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=user01
+2026-04-07 16:35:04 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=471.9µs elapsed_secs=0.0004719
+2026-04-07 16:35:04  WARN depface::services::api_service::auth: パスワード不一致 user_id=user01
+2026-04-07 16:35:04  WARN depface::api::auth: ログイン失敗 error=ユーザーIDまたはパスワードが正しくありません
+2026-04-07 16:35:12  INFO depface::api::auth: ログインリクエスト受信 user_id=user01
+2026-04-07 16:35:12 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=user01
+2026-04-07 16:35:12 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=492.4µs elapsed_secs=0.0004924
+2026-04-07 16:35:13  WARN depface::services::api_service::auth: パスワード不一致 user_id=user01
+2026-04-07 16:35:13  WARN depface::api::auth: ログイン失敗 error=ユーザーIDまたはパスワードが正しくありません
+2026-04-07 16:35:22  INFO depface::api::auth: ログインリクエスト受信 user_id=user01
+2026-04-07 16:35:22 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=user01
+2026-04-07 16:35:22 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=508.1µs elapsed_secs=0.0005081
+2026-04-07 16:35:22  WARN depface::services::api_service::auth: パスワード不一致 user_id=user01
+2026-04-07 16:35:22  WARN depface::api::auth: ログイン失敗 error=ユーザーIDまたはパスワードが正しくありません
+2026-04-07 16:35:26  INFO depface::api::auth: ログインリクエスト受信 user_id=user01
+2026-04-07 16:35:26 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=user01
+2026-04-07 16:35:26 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=464µs elapsed_secs=0.000464
+2026-04-07 16:35:27  WARN depface::services::api_service::auth: パスワード不一致 user_id=user01
+2026-04-07 16:35:27  WARN depface::api::auth: ログイン失敗 error=ユーザーIDまたはパスワードが正しくありません
+2026-04-07 16:35:32  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 16:35:32 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 16:35:32 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=504.6µs elapsed_secs=0.0005046
+2026-04-07 16:35:32  WARN depface::services::api_service::auth: パスワード不一致 user_id=mjscs
+2026-04-07 16:35:32  WARN depface::api::auth: ログイン失敗 error=ユーザーIDまたはパスワードが正しくありません
+2026-04-07 16:35:34  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 16:35:34 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 16:35:34 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=330µs elapsed_secs=0.00033
+2026-04-07 16:35:35 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 16:35:35  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 16:35:55 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=579.4µs elapsed_secs=0.0005794
+2026-04-07 16:35:55 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 16:35:55  INFO depface::api::user: ユーザー登録リクエスト受信 user_id=user02
+2026-04-07 16:35:55 DEBUG depface::services::api_service::user: パスワードハッシュ化開始 user_id=user02
+2026-04-07 16:35:55 DEBUG sqlx::query: summary="INSERT INTO main.users (user_id, …" db.statement="\n\n\n            INSERT INTO main.users (user_id, user_name, email, password_hash)\n            VALUES ($1, $2, $3, $4)\n            RETURNING id, user_id, user_name, email, password_hash, created_at, updated_at\n            \n" rows_affected=1 rows_returned=1 elapsed=952.9µs elapsed_secs=0.0009529
+2026-04-07 16:35:55 DEBUG depface::services::api_service::user: DBへのユーザー保存完了 user_id=user02
+2026-04-07 16:35:55  INFO depface::api::user: ユーザー登録成功 user_id=user02
+2026-04-07 16:35:57 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=457.7µs elapsed_secs=0.0004577
+2026-04-07 16:35:57 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 16:35:57  INFO depface::api::auth: ログアウトリクエスト受信 user_id=mjscs
+2026-04-07 16:35:57 DEBUG depface::services::api_service::auth: トークンをブラックリストに登録 user_id=mjscs
+2026-04-07 16:35:57 DEBUG sqlx::query: summary="INSERT INTO main.token_blacklist (token, …" db.statement="\n\n\n            INSERT INTO main.token_blacklist (token, expires_at)\n            VALUES ($1, $2)\n            ON CONFLICT (token) DO NOTHING\n            \n" rows_affected=1 rows_returned=0 elapsed=2.216ms elapsed_secs=0.002216
+2026-04-07 16:35:57  INFO depface::api::auth: ログアウト成功 user_id=mjscs
+2026-04-07 16:36:10  INFO depface::api::auth: ログインリクエスト受信 user_id=user02
+2026-04-07 16:36:10 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=user02
+2026-04-07 16:36:10 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=418.9µs elapsed_secs=0.0004189
+2026-04-07 16:36:11 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=user02
+2026-04-07 16:36:11  INFO depface::api::auth: ログイン成功 user_id=user02
+2026-04-07 16:36:17 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=380.1µs elapsed_secs=0.0003801
+2026-04-07 16:36:17 DEBUG depface::middleware::auth: 認証成功 user_id=user02
+2026-04-07 16:36:17  INFO depface::api::auth: ログアウトリクエスト受信 user_id=user02
+2026-04-07 16:36:17 DEBUG depface::services::api_service::auth: トークンをブラックリストに登録 user_id=user02
+2026-04-07 16:36:17 DEBUG sqlx::query: summary="INSERT INTO main.token_blacklist (token, …" db.statement="\n\n\n            INSERT INTO main.token_blacklist (token, expires_at)\n            VALUES ($1, $2)\n            ON CONFLICT (token) DO NOTHING\n            \n" rows_affected=1 rows_returned=0 elapsed=2.734ms elapsed_secs=0.002734
+2026-04-07 16:36:17  INFO depface::api::auth: ログアウト成功 user_id=user02
+2026-04-07 16:37:03  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 16:37:03 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 16:37:03 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=359.9µs elapsed_secs=0.0003599
+2026-04-07 16:37:03 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 16:37:03  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 16:37:05 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=290.8µs elapsed_secs=0.0002908
+2026-04-07 16:37:05 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 16:37:05  INFO depface::api::auth: ログアウトリクエスト受信 user_id=mjscs
+2026-04-07 16:37:05 DEBUG depface::services::api_service::auth: トークンをブラックリストに登録 user_id=mjscs
+2026-04-07 16:37:05 DEBUG sqlx::query: summary="INSERT INTO main.token_blacklist (token, …" db.statement="\n\n\n            INSERT INTO main.token_blacklist (token, expires_at)\n            VALUES ($1, $2)\n            ON CONFLICT (token) DO NOTHING\n            \n" rows_affected=1 rows_returned=0 elapsed=648.4µs elapsed_secs=0.0006484
+2026-04-07 16:37:05  INFO depface::api::auth: ログアウト成功 user_id=mjscs
+2026-04-07 16:44:40  INFO depface: アプリケーションを起動しています...
+2026-04-07 16:44:40  INFO depface: データベース接続プールを確立しました。
+2026-04-07 16:44:41 DEBUG sqlx::query: summary="SELECT COUNT(*) as count …" db.statement="\n\n\n            SELECT COUNT(*) as count FROM main.users\n            \n" rows_affected=1 rows_returned=1 elapsed=443.4022ms elapsed_secs=0.4434022
+2026-04-07 16:44:41  INFO depface: apiルーターを作成しています...
+2026-04-07 16:44:41  INFO depface: サーバー起動中: http://127.0.0.1:3000
+2026-04-07 16:47:15  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 16:47:15 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 16:47:15 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=21.9063ms elapsed_secs=0.0219063
+2026-04-07 16:47:16 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 16:47:16  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 16:50:07  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 16:50:07 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 16:50:07 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=830.4µs elapsed_secs=0.0008304
+2026-04-07 16:50:08 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 16:50:08  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 16:52:39  INFO depface: アプリケーションを起動しています...
+2026-04-07 16:52:39  INFO depface: データベース接続プールを確立しました。
+2026-04-07 16:52:39 DEBUG sqlx::query: summary="SELECT COUNT(*) as count …" db.statement="\n\n\n            SELECT COUNT(*) as count FROM main.users\n            \n" rows_affected=1 rows_returned=1 elapsed=6.9098ms elapsed_secs=0.0069098
+2026-04-07 16:52:39  INFO depface: apiルーターを作成しています...
+2026-04-07 16:52:39  INFO depface: サーバー起動中: http://127.0.0.1:3000
+2026-04-07 16:53:03  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 16:53:03 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 16:53:03 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=1.6127ms elapsed_secs=0.0016127
+2026-04-07 16:53:04 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 16:53:04  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 16:55:22  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 16:55:22 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 16:55:22 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=582.4µs elapsed_secs=0.0005824
+2026-04-07 16:55:22 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 16:55:22  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 16:55:23 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=18.9069ms elapsed_secs=0.0189069
+2026-04-07 16:55:23 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 16:55:23  INFO depface::api::auth: ログアウトリクエスト受信 user_id=mjscs
+2026-04-07 16:55:23 DEBUG depface::services::api_service::auth: トークンをブラックリストに登録 user_id=mjscs
+2026-04-07 16:55:23 DEBUG sqlx::query: summary="INSERT INTO main.token_blacklist (token, …" db.statement="\n\n\n            INSERT INTO main.token_blacklist (token, expires_at)\n            VALUES ($1, $2)\n            ON CONFLICT (token) DO NOTHING\n            \n" rows_affected=1 rows_returned=0 elapsed=19.9587ms elapsed_secs=0.0199587
+2026-04-07 16:55:23  INFO depface::api::auth: ログアウト成功 user_id=mjscs
+2026-04-07 16:58:23  INFO depface: アプリケーションを起動しています...
+2026-04-07 16:58:23  INFO depface: データベース接続プールを確立しました。
+2026-04-07 16:58:23 DEBUG sqlx::query: summary="SELECT COUNT(*) as count …" db.statement="\n\n\n            SELECT COUNT(*) as count FROM main.users\n            \n" rows_affected=1 rows_returned=1 elapsed=4.0969ms elapsed_secs=0.0040969
+2026-04-07 16:58:23  INFO depface: apiルーターを作成しています...
+2026-04-07 16:58:23  INFO depface: サーバー起動中: http://127.0.0.1:3000
+2026-04-07 16:58:33  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 16:58:33 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 16:58:33 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=2.7871ms elapsed_secs=0.0027871
+2026-04-07 16:58:34 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 16:58:34  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 17:00:08 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=2.9269ms elapsed_secs=0.0029269
+2026-04-07 17:00:08 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 17:00:08  INFO depface::api::auth: ログアウトリクエスト受信 user_id=mjscs
+2026-04-07 17:00:08 DEBUG depface::services::api_service::auth: トークンをブラックリストに登録 user_id=mjscs
+2026-04-07 17:00:08 DEBUG sqlx::query: summary="INSERT INTO main.token_blacklist (token, …" db.statement="\n\n\n            INSERT INTO main.token_blacklist (token, expires_at)\n            VALUES ($1, $2)\n            ON CONFLICT (token) DO NOTHING\n            \n" rows_affected=1 rows_returned=0 elapsed=3.9626ms elapsed_secs=0.0039626
+2026-04-07 17:00:08  INFO depface::api::auth: ログアウト成功 user_id=mjscs
+2026-04-07 17:00:09  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 17:00:09 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 17:00:09 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=584.7µs elapsed_secs=0.0005847
+2026-04-07 17:00:10 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 17:00:10  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 17:03:31  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 17:03:31 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 17:03:31 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=697.4µs elapsed_secs=0.0006974
+2026-04-07 17:03:31 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 17:03:31  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 17:03:47 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=529.3µs elapsed_secs=0.0005293
+2026-04-07 17:03:47 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 17:03:47  INFO depface::api::auth: ログアウトリクエスト受信 user_id=mjscs
+2026-04-07 17:03:47 DEBUG depface::services::api_service::auth: トークンをブラックリストに登録 user_id=mjscs
+2026-04-07 17:03:47 DEBUG sqlx::query: summary="INSERT INTO main.token_blacklist (token, …" db.statement="\n\n\n            INSERT INTO main.token_blacklist (token, expires_at)\n            VALUES ($1, $2)\n            ON CONFLICT (token) DO NOTHING\n            \n" rows_affected=1 rows_returned=0 elapsed=800µs elapsed_secs=0.0008
+2026-04-07 17:03:47  INFO depface::api::auth: ログアウト成功 user_id=mjscs
+2026-04-07 17:03:48  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 17:03:48 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 17:03:48 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=491.3µs elapsed_secs=0.0004913
+2026-04-07 17:03:49 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 17:03:49  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 17:03:50 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=663.7µs elapsed_secs=0.0006637
+2026-04-07 17:03:50 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 17:03:50  INFO depface::api::auth: ログアウトリクエスト受信 user_id=mjscs
+2026-04-07 17:03:50 DEBUG depface::services::api_service::auth: トークンをブラックリストに登録 user_id=mjscs
+2026-04-07 17:03:50 DEBUG sqlx::query: summary="INSERT INTO main.token_blacklist (token, …" db.statement="\n\n\n            INSERT INTO main.token_blacklist (token, expires_at)\n            VALUES ($1, $2)\n            ON CONFLICT (token) DO NOTHING\n            \n" rows_affected=1 rows_returned=0 elapsed=737.5µs elapsed_secs=0.0007375
+2026-04-07 17:03:50  INFO depface::api::auth: ログアウト成功 user_id=mjscs
+2026-04-07 17:04:45  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 17:04:45 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 17:04:45 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=425.8µs elapsed_secs=0.0004258
+2026-04-07 17:04:46 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 17:04:46  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 17:04:47 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=589.9µs elapsed_secs=0.0005899
+2026-04-07 17:04:47 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 17:04:47  INFO depface::api::auth: ログアウトリクエスト受信 user_id=mjscs
+2026-04-07 17:04:47 DEBUG depface::services::api_service::auth: トークンをブラックリストに登録 user_id=mjscs
+2026-04-07 17:04:47 DEBUG sqlx::query: summary="INSERT INTO main.token_blacklist (token, …" db.statement="\n\n\n            INSERT INTO main.token_blacklist (token, expires_at)\n            VALUES ($1, $2)\n            ON CONFLICT (token) DO NOTHING\n            \n" rows_affected=1 rows_returned=0 elapsed=1.1119ms elapsed_secs=0.0011119
+2026-04-07 17:04:47  INFO depface::api::auth: ログアウト成功 user_id=mjscs
+2026-04-07 17:04:56  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 17:04:56 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 17:04:56 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=1.0728ms elapsed_secs=0.0010728
+2026-04-07 17:04:57 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 17:04:57  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 17:06:12  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 17:06:12 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 17:06:12 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=459.2µs elapsed_secs=0.0004592
+2026-04-07 17:06:13 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 17:06:13  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 17:06:16 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=520.7µs elapsed_secs=0.0005207
+2026-04-07 17:06:16 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 17:06:16  INFO depface::api::auth: ログアウトリクエスト受信 user_id=mjscs
+2026-04-07 17:06:16 DEBUG depface::services::api_service::auth: トークンをブラックリストに登録 user_id=mjscs
+2026-04-07 17:06:16 DEBUG sqlx::query: summary="INSERT INTO main.token_blacklist (token, …" db.statement="\n\n\n            INSERT INTO main.token_blacklist (token, expires_at)\n            VALUES ($1, $2)\n            ON CONFLICT (token) DO NOTHING\n            \n" rows_affected=1 rows_returned=0 elapsed=2.2728ms elapsed_secs=0.0022728
+2026-04-07 17:06:16  INFO depface::api::auth: ログアウト成功 user_id=mjscs
+2026-04-07 17:06:17  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 17:06:17 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 17:06:17 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=383.4µs elapsed_secs=0.0003834
+2026-04-07 17:06:18 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 17:06:18  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 17:06:19 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=495.6µs elapsed_secs=0.0004956
+2026-04-07 17:06:19 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 17:06:19  INFO depface::api::auth: ログアウトリクエスト受信 user_id=mjscs
+2026-04-07 17:06:19 DEBUG depface::services::api_service::auth: トークンをブラックリストに登録 user_id=mjscs
+2026-04-07 17:06:19 DEBUG sqlx::query: summary="INSERT INTO main.token_blacklist (token, …" db.statement="\n\n\n            INSERT INTO main.token_blacklist (token, expires_at)\n            VALUES ($1, $2)\n            ON CONFLICT (token) DO NOTHING\n            \n" rows_affected=1 rows_returned=0 elapsed=761µs elapsed_secs=0.000761
+2026-04-07 17:06:19  INFO depface::api::auth: ログアウト成功 user_id=mjscs
+2026-04-07 17:06:22  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 17:06:22 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 17:06:22 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=474.6µs elapsed_secs=0.0004746
+2026-04-07 17:06:22 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 17:06:22  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 17:06:24 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=324.9µs elapsed_secs=0.0003249
+2026-04-07 17:06:24 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 17:06:24  INFO depface::api::auth: ログアウトリクエスト受信 user_id=mjscs
+2026-04-07 17:06:24 DEBUG depface::services::api_service::auth: トークンをブラックリストに登録 user_id=mjscs
+2026-04-07 17:06:24 DEBUG sqlx::query: summary="INSERT INTO main.token_blacklist (token, …" db.statement="\n\n\n            INSERT INTO main.token_blacklist (token, expires_at)\n            VALUES ($1, $2)\n            ON CONFLICT (token) DO NOTHING\n            \n" rows_affected=1 rows_returned=0 elapsed=849.2µs elapsed_secs=0.0008492
+2026-04-07 17:06:24  INFO depface::api::auth: ログアウト成功 user_id=mjscs
+2026-04-07 17:06:25  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 17:06:25 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 17:06:25 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=337.3µs elapsed_secs=0.0003373
+2026-04-07 17:06:26 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 17:06:26  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 17:06:27 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=251.8µs elapsed_secs=0.0002518
+2026-04-07 17:06:27 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 17:06:27  INFO depface::api::auth: ログアウトリクエスト受信 user_id=mjscs
+2026-04-07 17:06:27 DEBUG depface::services::api_service::auth: トークンをブラックリストに登録 user_id=mjscs
+2026-04-07 17:06:27 DEBUG sqlx::query: summary="INSERT INTO main.token_blacklist (token, …" db.statement="\n\n\n            INSERT INTO main.token_blacklist (token, expires_at)\n            VALUES ($1, $2)\n            ON CONFLICT (token) DO NOTHING\n            \n" rows_affected=1 rows_returned=0 elapsed=751.3µs elapsed_secs=0.0007513
+2026-04-07 17:06:27  INFO depface::api::auth: ログアウト成功 user_id=mjscs
+2026-04-07 17:06:32  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 17:06:32 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 17:06:32 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=313.1µs elapsed_secs=0.0003131
+2026-04-07 17:06:32 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 17:06:32  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 17:06:34 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=325.1µs elapsed_secs=0.0003251
+2026-04-07 17:06:34 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 17:06:34  INFO depface::api::auth: ログアウトリクエスト受信 user_id=mjscs
+2026-04-07 17:06:34 DEBUG depface::services::api_service::auth: トークンをブラックリストに登録 user_id=mjscs
+2026-04-07 17:06:34 DEBUG sqlx::query: summary="INSERT INTO main.token_blacklist (token, …" db.statement="\n\n\n            INSERT INTO main.token_blacklist (token, expires_at)\n            VALUES ($1, $2)\n            ON CONFLICT (token) DO NOTHING\n            \n" rows_affected=1 rows_returned=0 elapsed=2.1786ms elapsed_secs=0.0021786
+2026-04-07 17:06:34  INFO depface::api::auth: ログアウト成功 user_id=mjscs
+2026-04-07 17:06:51  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 17:06:51 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 17:06:51 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=358.2µs elapsed_secs=0.0003582
+2026-04-07 17:06:52 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 17:06:52  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 17:06:54 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=341.3µs elapsed_secs=0.0003413
+2026-04-07 17:06:54 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 17:06:54  INFO depface::api::auth: ログアウトリクエスト受信 user_id=mjscs
+2026-04-07 17:06:54 DEBUG depface::services::api_service::auth: トークンをブラックリストに登録 user_id=mjscs
+2026-04-07 17:06:54 DEBUG sqlx::query: summary="INSERT INTO main.token_blacklist (token, …" db.statement="\n\n\n            INSERT INTO main.token_blacklist (token, expires_at)\n            VALUES ($1, $2)\n            ON CONFLICT (token) DO NOTHING\n            \n" rows_affected=1 rows_returned=0 elapsed=2.3488ms elapsed_secs=0.0023488
+2026-04-07 17:06:54  INFO depface::api::auth: ログアウト成功 user_id=mjscs
+2026-04-07 17:08:28  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 17:08:28 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 17:08:28 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=377.7µs elapsed_secs=0.0003777
+2026-04-07 17:08:29 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 17:08:29  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 17:13:05  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 17:13:05 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 17:13:05 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=490.6µs elapsed_secs=0.0004906
+2026-04-07 17:13:05 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 17:13:05  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 17:16:02 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=283.2µs elapsed_secs=0.0002832
+2026-04-07 17:16:02 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 17:16:02  INFO depface::api::auth: ログアウトリクエスト受信 user_id=mjscs
+2026-04-07 17:16:02 DEBUG depface::services::api_service::auth: トークンをブラックリストに登録 user_id=mjscs
+2026-04-07 17:16:02 DEBUG sqlx::query: summary="INSERT INTO main.token_blacklist (token, …" db.statement="\n\n\n            INSERT INTO main.token_blacklist (token, expires_at)\n            VALUES ($1, $2)\n            ON CONFLICT (token) DO NOTHING\n            \n" rows_affected=1 rows_returned=0 elapsed=590.9µs elapsed_secs=0.0005909
+2026-04-07 17:16:02  INFO depface::api::auth: ログアウト成功 user_id=mjscs
+2026-04-07 17:16:04  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 17:16:04 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 17:16:04 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=406.3µs elapsed_secs=0.0004063
+2026-04-07 17:16:04 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 17:16:04  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 17:16:43  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 17:16:43 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 17:16:43 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=458.9µs elapsed_secs=0.0004589
+2026-04-07 17:16:43 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 17:16:43  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 17:17:34  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 17:17:34 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 17:17:34 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=331.5µs elapsed_secs=0.0003315
+2026-04-07 17:17:35 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 17:17:35  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 17:17:43 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=395.3µs elapsed_secs=0.0003953
+2026-04-07 17:17:43 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 17:17:43  INFO depface::api::auth: ログアウトリクエスト受信 user_id=mjscs
+2026-04-07 17:17:43 DEBUG depface::services::api_service::auth: トークンをブラックリストに登録 user_id=mjscs
+2026-04-07 17:17:43 DEBUG sqlx::query: summary="INSERT INTO main.token_blacklist (token, …" db.statement="\n\n\n            INSERT INTO main.token_blacklist (token, expires_at)\n            VALUES ($1, $2)\n            ON CONFLICT (token) DO NOTHING\n            \n" rows_affected=1 rows_returned=0 elapsed=2.4077ms elapsed_secs=0.0024077
+2026-04-07 17:17:43  INFO depface::api::auth: ログアウト成功 user_id=mjscs
+2026-04-07 17:17:45  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 17:17:45 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 17:17:45 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=419.3µs elapsed_secs=0.0004193
+2026-04-07 17:17:46 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 17:17:46  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 17:17:58 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=446.6µs elapsed_secs=0.0004466
+2026-04-07 17:17:58 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 17:17:58  INFO depface::api::auth: ログアウトリクエスト受信 user_id=mjscs
+2026-04-07 17:17:58 DEBUG depface::services::api_service::auth: トークンをブラックリストに登録 user_id=mjscs
+2026-04-07 17:17:58 DEBUG sqlx::query: summary="INSERT INTO main.token_blacklist (token, …" db.statement="\n\n\n            INSERT INTO main.token_blacklist (token, expires_at)\n            VALUES ($1, $2)\n            ON CONFLICT (token) DO NOTHING\n            \n" rows_affected=1 rows_returned=0 elapsed=703.6µs elapsed_secs=0.0007036
+2026-04-07 17:17:58  INFO depface::api::auth: ログアウト成功 user_id=mjscs
+2026-04-07 17:17:59  INFO depface::api::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-07 17:17:59 DEBUG depface::services::api_service::auth: ユーザー検索開始 user_id=mjscs
+2026-04-07 17:17:59 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=449.9µs elapsed_secs=0.0004499
+2026-04-07 17:18:00 DEBUG depface::services::api_service::auth: トークン生成完了 user_id=mjscs
+2026-04-07 17:18:00  INFO depface::api::auth: ログイン成功 user_id=mjscs
+2026-04-07 17:20:30 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=421.6µs elapsed_secs=0.0004216
+2026-04-07 17:20:30 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 17:20:30  INFO depface::api::user: ユーザー登録リクエスト受信 user_id=user02
+2026-04-07 17:20:30 DEBUG depface::services::api_service::user: パスワードハッシュ化開始 user_id=user02
+2026-04-07 17:20:31 DEBUG sqlx::query: summary="INSERT INTO main.users (user_id, …" db.statement="\n\n\n            INSERT INTO main.users (user_id, user_name, email, password_hash)\n            VALUES ($1, $2, $3, $4)\n            RETURNING id, user_id, user_name, email, password_hash, created_at, updated_at\n            \n" rows_affected=0 rows_returned=0 elapsed=31.631ms elapsed_secs=0.031631
+2026-04-07 17:20:31  WARN depface::services::api_service::user: ユーザー登録DBエラー error=error returned from database: 重複したキー値は一意性制約"users_user_id_key"違反となります
+2026-04-07 17:20:31  WARN depface::api::user: ユーザー登録失敗 error=DBエラー: error returned from database: 重複したキー値は一意性制約"users_user_id_key"違反となります
+2026-04-07 17:25:31 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=434.1µs elapsed_secs=0.0004341
+2026-04-07 17:25:31 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 17:25:31  INFO depface::api::user: ユーザー登録リクエスト受信 user_id=user03
+2026-04-07 17:25:31 DEBUG depface::services::api_service::user: パスワードハッシュ化開始 user_id=user03
+2026-04-07 17:25:31 DEBUG sqlx::query: summary="INSERT INTO main.users (user_id, …" db.statement="\n\n\n            INSERT INTO main.users (user_id, user_name, email, password_hash)\n            VALUES ($1, $2, $3, $4)\n            RETURNING id, user_id, user_name, email, password_hash, created_at, updated_at\n            \n" rows_affected=1 rows_returned=1 elapsed=2.2841ms elapsed_secs=0.0022841
+2026-04-07 17:25:31 DEBUG depface::services::api_service::user: DBへのユーザー保存完了 user_id=user03
+2026-04-07 17:25:31  INFO depface::api::user: ユーザー登録成功 user_id=user03
+2026-04-07 17:33:50  INFO depface: アプリケーションを起動しています...
+2026-04-07 17:33:51  INFO depface: データベース接続プールを確立しました。
+2026-04-07 17:33:51 DEBUG sqlx::query: summary="SELECT COUNT(*) as count …" db.statement="\n\n\n            SELECT COUNT(*) as count FROM main.users\n            \n" rows_affected=1 rows_returned=1 elapsed=4.2761ms elapsed_secs=0.0042761
+2026-04-07 17:33:51  INFO depface: apiルーターを作成しています...
+2026-04-07 17:33:51  INFO depface: サーバー起動中: http://127.0.0.1:3000
+2026-04-07 17:36:42 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=3.3301ms elapsed_secs=0.0033301
+2026-04-07 17:36:42 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 17:36:42  INFO depface::api::user: ユーザー登録リクエスト受信 user_id=user02
+2026-04-07 17:36:42 DEBUG depface::services::api_service::user: パスワードハッシュ化開始 user_id=user02
+2026-04-07 17:36:42 DEBUG sqlx::query: summary="INSERT INTO main.users (user_id, …" db.statement="\n\n\n            INSERT INTO main.users (user_id, user_name, email, password_hash)\n            VALUES ($1, $2, $3, $4)\n            RETURNING id, user_id, user_name, email, password_hash, created_at, updated_at\n            \n" rows_affected=0 rows_returned=0 elapsed=3.8436ms elapsed_secs=0.0038436
+2026-04-07 17:36:42  WARN depface::services::api_service::user: 重複ユーザー登録試行
+2026-04-07 17:36:42  WARN depface::api::user: ユーザー登録失敗 error=このIDまたはメールアドレスは既に使用されています
+2026-04-07 17:36:45 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=517.5µs elapsed_secs=0.0005175
+2026-04-07 17:36:45 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-07 17:36:45  INFO depface::api::user: ユーザー登録リクエスト受信 user_id=user02
+2026-04-07 17:36:45 DEBUG depface::services::api_service::user: パスワードハッシュ化開始 user_id=user02
+2026-04-07 17:36:45 DEBUG sqlx::query: summary="INSERT INTO main.users (user_id, …" db.statement="\n\n\n            INSERT INTO main.users (user_id, user_name, email, password_hash)\n            VALUES ($1, $2, $3, $4)\n            RETURNING id, user_id, user_name, email, password_hash, created_at, updated_at\n            \n" rows_affected=0 rows_returned=0 elapsed=1.7378ms elapsed_secs=0.0017378
+2026-04-07 17:36:45  WARN depface::services::api_service::user: 重複ユーザー登録試行
+2026-04-07 17:36:45  WARN depface::api::user: ユーザー登録失敗 error=このIDまたはメールアドレスは既に使用されています

@@ -44,6 +44,19 @@ impl UserRepository {
         .fetch_optional(&self.pool)
         .await
     }
+
+    // ユーザー登録数をカウント
+    pub async fn count_users(&self) -> Result<i64, sqlx::Error> {
+        let result = sqlx::query!(
+            r#"
+            SELECT COUNT(*) as count FROM main.users
+            "#
+        )
+        .fetch_one(&self.pool)
+        .await?;
+
+        Ok(result.count.unwrap_or(0))
+    }
 }
 
 #[cfg(test)]

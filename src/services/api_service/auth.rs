@@ -1,6 +1,7 @@
 // src/services/api_service/auth.rs
 
 use std::time::{SystemTime, UNIX_EPOCH};
+use tracing::{debug, warn};
 
 use crate::auth::{generate_token, verify_password, verify_token};
 use crate::models::auth::{LoginRequest, LoginResponse};
@@ -8,19 +9,25 @@ use crate::services::api_service::ApiService;
 
 impl ApiService {
     pub async fn login_user(&self, req: LoginRequest) -> Result<LoginResponse, String> {
+        debug!(user_id = %req.user_id, "ユーザー検索開始");
         let user = self
             .user_repo
             .find_by_user_id(&req.user_id)
             .await
             .map_err(|e| format!("DBエラー: {}", e))?
-            .ok_or_else(|| "ユーザーIDまたはパスワードが正しくありません".to_string())?;
+            .ok_or_else(|| {
+                warn!(user_id = %req.user_id, "ユーザーが存在しない");
+                "ユーザーIDまたはパスワードが正しくありません".to_string()
+            })?;
 
         let is_valid = verify_password(&req.password, &user.password_hash)?;
         if !is_valid {
+            warn!(user_id = %req.user_id, "パスワード不一致");
             return Err("ユーザーIDまたはパスワードが正しくありません".to_string());
         }
 
         let token = generate_token(&user.user_id)?;
+        debug!(user_id = %user.user_id, "トークン生成完了");
 
         Ok(LoginResponse {
             token,
@@ -42,6 +49,7 @@ impl ApiService {
             return Ok(());
         }
 
+        debug!(user_id = %claims.sub, "トークンをブラックリストに登録");
         self.blacklist_repo.blacklist_token(token, ttl).await
     }
 }

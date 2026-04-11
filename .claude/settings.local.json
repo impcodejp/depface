@@ -1,7 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "Bash(rustc --version)"
+      "Bash(rustc --version)",
+      "Bash(cp -r /c/Users/ryosuke_takiguchi/Documents/mysys/depface-front/src /c/Users/ryosuke_takiguchi/Documents/mysys/rust/depface/front/)",
+      "Bash(cp /c/Users/ryosuke_takiguchi/Documents/mysys/depface-front/package.json /c/Users/ryosuke_takiguchi/Documents/mysys/rust/depface/front/)",
+      "Bash(cp /c/Users/ryosuke_takiguchi/Documents/mysys/depface-front/package-lock.json /c/Users/ryosuke_takiguchi/Documents/mysys/rust/depface/front/)",
+      "Bash(cp /c/Users/ryosuke_takiguchi/Documents/mysys/depface-front/vite.config.ts /c/Users/ryosuke_takiguchi/Documents/mysys/rust/depface/front/)",
+      "Bash(cp /c/Users/ryosuke_takiguchi/Documents/mysys/depface-front/index.html /c/Users/ryosuke_takiguchi/Documents/mysys/rust/depface/front/)"
     ]
   }
 }

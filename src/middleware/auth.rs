@@ -6,6 +6,7 @@ use axum::{
 };
 use serde_json::json;
 use std::sync::Arc;
+use tracing::{debug, warn};
 
 use crate::auth::verify_token;
 use crate::services::api_service::ApiService;
@@ -34,12 +35,17 @@ where
             .get("Authorization")
             .and_then(|v| v.to_str().ok())
             .and_then(|v| v.strip_prefix("Bearer "))
-            .ok_or_else(|| auth_error("認証トークンがありません"))?
+            .ok_or_else(|| {
+                warn!("Authorizationヘッダーがありません");
+                auth_error("認証トークンがありません")
+            })?
             .to_string();
 
         // トークンの検証
-        let claims =
-            verify_token(&token).map_err(|_| auth_error("無効または期限切れのトークンです"))?;
+        let claims = verify_token(&token).map_err(|_| {
+            warn!("無効なトークン");
+            auth_error("無効または期限切れのトークンです")
+        })?;
 
         // ブラックリストチェック
         let State(service): State<Arc<ApiService>> = State::from_request_parts(parts, state)
@@ -53,9 +59,11 @@ where
             .map_err(|_| auth_error("サーバーエラー"))?;
 
         if is_blacklisted {
+            warn!(user_id = %claims.sub, "ブラックリスト済みトークンでのアクセス試行");
             return Err(auth_error("このトークンは無効化されています"));
         }
 
+        debug!(user_id = %claims.sub, "認証成功");
         Ok(AuthUser {
             user_id: claims.sub,
             token,
