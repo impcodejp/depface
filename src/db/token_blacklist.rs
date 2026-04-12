@@ -54,12 +54,11 @@ impl TokenBlacklistRepository {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::db::pool::establish_connection;
     use dotenvy::dotenv;
 
     async fn setup_repo() -> TokenBlacklistRepository {
         dotenv().ok();
-        let pool = establish_connection().await;
+        let pool = crate::db::establish_connection().await;
         TokenBlacklistRepository::new(pool)
     }
 

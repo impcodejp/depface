@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { NavLink, useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { logout } from '../api/client'
-import { Users, UserPlus, LogOut, Home } from 'lucide-react'
+import { Users, UserPlus, LogOut, Home, Building2, FilePlus } from 'lucide-react'
 
 export type NavItem = {
   label: string
@@ -28,6 +28,16 @@ export const categories: Category[] = [
     basePath: '/users',
     items: [
       { label: 'ユーザー追加', path: '/users/add', icon: UserPlus },
+    ],
+  },
+  {
+    id: 'properties',
+    label: '物件管理',
+    shortLabel: '物件',
+    icon: Building2,
+    basePath: '/properties',
+    items: [
+      { label: '物件登録', path: '/properties/add', icon: FilePlus },
     ],
   },
 ]

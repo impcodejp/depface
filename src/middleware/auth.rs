@@ -9,7 +9,7 @@ use std::sync::Arc;
 use tracing::{debug, warn};
 
 use crate::auth::verify_token;
-use crate::services::api_service::ApiService;
+use crate::services::AppService;
 
 pub struct AuthUser {
     pub user_id: String,
@@ -24,12 +24,11 @@ fn auth_error(msg: &str) -> (StatusCode, Json<serde_json::Value>) {
 impl<S> FromRequestParts<S> for AuthUser
 where
     S: Send + Sync,
-    Arc<ApiService>: FromRef<S>,
+    Arc<AppService>: FromRef<S>,
 {
     type Rejection = (StatusCode, Json<serde_json::Value>);
 
     async fn from_request_parts(parts: &mut Parts, state: &S) -> Result<Self, Self::Rejection> {
-        // トークンの抽出
         let token = parts
             .headers
             .get("Authorization")
@@ -41,14 +40,12 @@ where
             })?
             .to_string();
 
-        // トークンの検証
         let claims = verify_token(&token).map_err(|_| {
             warn!("無効なトークン");
             auth_error("無効または期限切れのトークンです")
         })?;
 
-        // ブラックリストチェック
-        let State(service): State<Arc<ApiService>> = State::from_request_parts(parts, state)
+        let State(service): State<Arc<AppService>> = State::from_request_parts(parts, state)
             .await
             .map_err(|_| auth_error("サーバーエラー"))?;
 

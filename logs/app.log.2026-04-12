@@ -1,0 +1,34 @@
+2026-04-12 17:32:29  INFO depface: アプリケーションを起動しています...
+2026-04-12 17:32:30  INFO depface: データベース接続プールを確立しました。
+2026-04-12 17:32:30  INFO depface: apiルーターを作成しています...
+2026-04-12 17:32:30  INFO depface: サーバー起動中: http://127.0.0.1:3000
+2026-04-12 17:36:29  INFO depface: アプリケーションを起動しています...
+2026-04-12 17:36:29  INFO depface: データベース接続プールを確立しました。
+2026-04-12 17:36:29  INFO depface: apiルーターを作成しています...
+2026-04-12 17:36:29  INFO depface: サーバー起動中: http://127.0.0.1:3000
+2026-04-13 02:38:46  INFO depface: アプリケーションを起動しています...
+2026-04-13 02:38:46  INFO depface: データベース接続プールを確立しました。
+2026-04-13 02:38:46  INFO depface: apiルーターを作成しています...
+2026-04-13 02:38:46  INFO depface: サーバー起動中: http://127.0.0.1:3000
+2026-04-13 02:40:01  INFO depface::handlers::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-13 02:40:01  WARN depface::services::auth: ユーザーが存在しない user_id=mjscs
+2026-04-13 02:40:01  WARN depface::handlers::auth: ログイン失敗 error=ユーザーIDまたはパスワードが正しくありません
+2026-04-13 02:40:10  INFO depface::handlers::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-13 02:40:10  WARN depface::services::auth: ユーザーが存在しない user_id=mjscs
+2026-04-13 02:40:10  WARN depface::handlers::auth: ログイン失敗 error=ユーザーIDまたはパスワードが正しくありません
+2026-04-13 02:40:10  INFO depface::handlers::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-13 02:40:10  WARN depface::services::auth: ユーザーが存在しない user_id=mjscs
+2026-04-13 02:40:10  WARN depface::handlers::auth: ログイン失敗 error=ユーザーIDまたはパスワードが正しくありません
+2026-04-13 02:40:10  INFO depface::handlers::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-13 02:40:10  WARN depface::services::auth: ユーザーが存在しない user_id=mjscs
+2026-04-13 02:40:10  WARN depface::handlers::auth: ログイン失敗 error=ユーザーIDまたはパスワードが正しくありません
+2026-04-13 02:40:11  INFO depface::handlers::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-13 02:40:11  WARN depface::services::auth: ユーザーが存在しない user_id=mjscs
+2026-04-13 02:40:11  WARN depface::handlers::auth: ログイン失敗 error=ユーザーIDまたはパスワードが正しくありません
+2026-04-13 02:41:19  INFO depface: アプリケーションを起動しています...
+2026-04-13 02:41:19  INFO depface: データベース接続プールを確立しました。
+2026-04-13 02:41:19  INFO depface: ユーザーが存在しません。初期ユーザーを登録します...
+2026-04-13 02:41:20  INFO depface: apiルーターを作成しています...
+2026-04-13 02:41:20  INFO depface: サーバー起動中: http://127.0.0.1:3000
+2026-04-13 02:41:31  INFO depface::handlers::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-13 02:41:31  INFO depface::handlers::auth: ログイン成功 user_id=mjscs

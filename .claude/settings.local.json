@@ -6,7 +6,11 @@
       "Bash(cp /c/Users/ryosuke_takiguchi/Documents/mysys/depface-front/package.json /c/Users/ryosuke_takiguchi/Documents/mysys/rust/depface/front/)",
       "Bash(cp /c/Users/ryosuke_takiguchi/Documents/mysys/depface-front/package-lock.json /c/Users/ryosuke_takiguchi/Documents/mysys/rust/depface/front/)",
       "Bash(cp /c/Users/ryosuke_takiguchi/Documents/mysys/depface-front/vite.config.ts /c/Users/ryosuke_takiguchi/Documents/mysys/rust/depface/front/)",
-      "Bash(cp /c/Users/ryosuke_takiguchi/Documents/mysys/depface-front/index.html /c/Users/ryosuke_takiguchi/Documents/mysys/rust/depface/front/)"
+      "Bash(cp /c/Users/ryosuke_takiguchi/Documents/mysys/depface-front/index.html /c/Users/ryosuke_takiguchi/Documents/mysys/rust/depface/front/)",
+      "Bash(rm:*)",
+      "Bash(cargo check:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)"
     ]
   }
 }
