@@ -21,7 +21,7 @@ export default function MenuPage() {
         <div className="mb-10">
           <p className="text-gray-400 text-sm">{greeting()}</p>
           <h1 className="text-2xl font-bold text-gray-800 mt-0.5">
-            {auth?.user_id} さん
+            {auth?.user_name} さん
           </h1>
         </div>
 

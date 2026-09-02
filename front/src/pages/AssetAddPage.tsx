@@ -1,13 +1,16 @@
 import { useForm } from 'react-hook-form'
 import AppLayout from '../components/AppLayout'
+import { addAsset } from '../api/asset'
+import { useAuth } from '../contexts/AuthContext'
+
 
 type PropertyForm = {
-  property_code: string
-  formal_name: string
+  asset_code: string
+  long_name: string
   short_name: string
 }
 
-export default function PropertyAddPage() {
+export default function AssetAddPage() {
   const {
     register,
     handleSubmit,
@@ -15,14 +18,19 @@ export default function PropertyAddPage() {
     formState: { errors, isSubmitting },
   } = useForm<PropertyForm>()
 
+  const { auth } = useAuth()
+
   async function onSubmit(data: PropertyForm) {
     try {
-      // TODO: API 実装後に差し替え
-      await new Promise((resolve) => setTimeout(resolve, 500))
-      console.log('登録データ:', data)
+      if (!auth) throw new Error('認証情報がありません')
+
+      // ここでAPI呼び出しを行う
+      const res = await addAsset(auth.token, data)
+      alert(`物件「${res.long_name}」を登録しました`)
       reset()
-    } catch (err) {
-      console.error(err)
+    } catch (error) {
+      console.error(error)
+      alert('物件の登録に失敗しました')
     }
   }
 
@@ -44,11 +52,11 @@ export default function PropertyAddPage() {
               <input
                 type="text"
                 placeholder="P-001"
-                {...register('property_code', { required: '物件コードは必須です' })}
+                {...register('asset_code', { required: '物件コードは必須です' })}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-400"
               />
-              {errors.property_code && (
-                <p className="mt-1 text-xs text-red-600">{errors.property_code.message}</p>
+              {errors.asset_code && (
+                <p className="mt-1 text-xs text-red-600">{errors.asset_code.message}</p>
               )}
             </div>
 
@@ -59,11 +67,11 @@ export default function PropertyAddPage() {
               <input
                 type="text"
                 placeholder="○○マンション △△号室"
-                {...register('formal_name', { required: '正式名称は必須です' })}
+                {...register('long_name', { required: '正式名称は必須です' })}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent placeholder-gray-400"
               />
-              {errors.formal_name && (
-                <p className="mt-1 text-xs text-red-600">{errors.formal_name.message}</p>
+              {errors.long_name && (
+                <p className="mt-1 text-xs text-red-600">{errors.long_name.message}</p>
               )}
             </div>
 

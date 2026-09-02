@@ -32,3 +32,54 @@
 2026-04-13 02:41:20  INFO depface: サーバー起動中: http://127.0.0.1:3000
 2026-04-13 02:41:31  INFO depface::handlers::auth: ログインリクエスト受信 user_id=mjscs
 2026-04-13 02:41:31  INFO depface::handlers::auth: ログイン成功 user_id=mjscs
+2026-04-13 07:56:12  INFO depface: アプリケーションを起動しています...
+2026-04-13 07:56:12  INFO depface: データベース接続プールを確立しました。
+2026-04-13 07:56:12 DEBUG sqlx::query: summary="SELECT COUNT(*) as count …" db.statement="\n\n\n            SELECT COUNT(*) as count FROM main.users\n            \n" rows_affected=1 rows_returned=1 elapsed=14.2183ms elapsed_secs=0.0142183
+2026-04-13 07:56:12  INFO depface: apiルーターを作成しています...
+2026-04-13 07:56:12  INFO depface: サーバー起動中: http://127.0.0.1:3000
+2026-04-13 08:14:23  INFO depface::handlers::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-13 08:14:23 DEBUG depface::services::auth: ユーザー検索開始 user_id=mjscs
+2026-04-13 08:14:23 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=8.9556ms elapsed_secs=0.0089556
+2026-04-13 08:14:24 DEBUG depface::services::auth: トークン生成完了 user_id=mjscs
+2026-04-13 08:14:24  INFO depface::handlers::auth: ログイン成功 user_id=mjscs
+2026-04-13 08:16:49  INFO depface::handlers::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-13 08:16:49 DEBUG depface::services::auth: ユーザー検索開始 user_id=mjscs
+2026-04-13 08:16:49 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=463.7µs elapsed_secs=0.0004637
+2026-04-13 08:16:50 DEBUG depface::services::auth: トークン生成完了 user_id=mjscs
+2026-04-13 08:16:50  INFO depface::handlers::auth: ログイン成功 user_id=mjscs
+2026-04-13 08:21:14  INFO depface: アプリケーションを起動しています...
+2026-04-13 08:21:14  INFO depface: データベース接続プールを確立しました。
+2026-04-13 08:21:14 DEBUG sqlx::query: summary="SELECT COUNT(*) as count …" db.statement="\n\n\n            SELECT COUNT(*) as count FROM main.users\n            \n" rows_affected=1 rows_returned=1 elapsed=4.4202ms elapsed_secs=0.0044202
+2026-04-13 08:21:14  INFO depface: apiルーターを作成しています...
+2026-04-13 08:21:14  INFO depface: サーバー起動中: http://127.0.0.1:3000
+2026-04-13 08:21:15 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=4.6937ms elapsed_secs=0.0046937
+2026-04-13 08:21:15 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-13 08:21:15  INFO depface::handlers::auth: ログアウトリクエスト受信 user_id=mjscs
+2026-04-13 08:21:15 DEBUG depface::services::auth: トークンをブラックリストに登録 user_id=mjscs
+2026-04-13 08:21:15 DEBUG sqlx::query: summary="INSERT INTO main.token_blacklist (token, …" db.statement="\n\n\n            INSERT INTO main.token_blacklist (token, expires_at)\n            VALUES ($1, $2)\n            ON CONFLICT (token) DO NOTHING\n            \n" rows_affected=1 rows_returned=0 elapsed=14.7773ms elapsed_secs=0.0147773
+2026-04-13 08:21:15  INFO depface::handlers::auth: ログアウト成功 user_id=mjscs
+2026-04-13 08:21:23  INFO depface::handlers::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-13 08:21:23 DEBUG depface::services::auth: ユーザー検索開始 user_id=mjscs
+2026-04-13 08:21:23 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=1.8144ms elapsed_secs=0.0018144
+2026-04-13 08:21:23 DEBUG depface::services::auth: トークン生成完了 user_id=mjscs
+2026-04-13 08:21:23  INFO depface::handlers::auth: ログイン成功 user_id=mjscs
+2026-04-13 08:23:05  INFO depface::handlers::auth: ログインリクエスト受信 user_id=mjscs
+2026-04-13 08:23:05 DEBUG depface::services::auth: ユーザー検索開始 user_id=mjscs
+2026-04-13 08:23:05 DEBUG sqlx::query: summary="SELECT id, user_id, user_name, …" db.statement="\n\n\n            SELECT id, user_id, user_name, email, password_hash, created_at, updated_at\n            FROM main.users\n            WHERE user_id = $1\n            \n" rows_affected=1 rows_returned=1 elapsed=519.4µs elapsed_secs=0.0005194
+2026-04-13 08:23:05 DEBUG depface::services::auth: トークン生成完了 user_id=mjscs
+2026-04-13 08:23:05  INFO depface::handlers::auth: ログイン成功 user_id=mjscs
+2026-04-13 08:25:18 DEBUG sqlx::query: summary="SELECT EXISTS( SELECT 1 …" db.statement="\n\n\n            SELECT EXISTS(\n                SELECT 1 FROM main.token_blacklist\n                WHERE token = $1 AND expires_at > NOW()\n            ) AS \"exists!\"\n            \n" rows_affected=1 rows_returned=1 elapsed=520.5µs elapsed_secs=0.0005205
+2026-04-13 08:25:18 DEBUG depface::middleware::auth: 認証成功 user_id=mjscs
+2026-04-13 08:25:18  INFO depface::handlers::auth: ログアウトリクエスト受信 user_id=mjscs
+2026-04-13 08:25:18 DEBUG depface::services::auth: トークンをブラックリストに登録 user_id=mjscs
+2026-04-13 08:25:18 DEBUG sqlx::query: summary="INSERT INTO main.token_blacklist (token, …" db.statement="\n\n\n            INSERT INTO main.token_blacklist (token, expires_at)\n            VALUES ($1, $2)\n            ON CONFLICT (token) DO NOTHING\n            \n" rows_affected=1 rows_returned=0 elapsed=1.0051ms elapsed_secs=0.0010051
+2026-04-13 08:25:18  INFO depface::handlers::auth: ログアウト成功 user_id=mjscs
+2026-04-13 08:27:55  INFO depface: アプリケーションを起動しています...
+2026-04-13 08:27:55  INFO depface: データベース接続プールを確立しました。
+2026-04-13 08:27:55 DEBUG sqlx::query: summary="SELECT COUNT(*) as count …" db.statement="\n\n\n            SELECT COUNT(*) as count FROM main.users\n            \n" rows_affected=1 rows_returned=1 elapsed=5.0213ms elapsed_secs=0.0050213
+2026-04-13 08:27:55  INFO depface: ユーザーが存在しません。初期ユーザーを登録します...
+2026-04-13 08:27:55 DEBUG depface::services::user: パスワードハッシュ化開始 user_id=mjscs
+2026-04-13 08:27:55 DEBUG sqlx::query: summary="INSERT INTO main.users (user_id, …" db.statement="\n\n\n            INSERT INTO main.users (user_id, user_name, email, password_hash)\n            VALUES ($1, $2, $3, $4)\n            RETURNING id, user_id, user_name, email, password_hash, created_at, updated_at\n            \n" rows_affected=1 rows_returned=1 elapsed=2.3993ms elapsed_secs=0.0023993
+2026-04-13 08:27:55 DEBUG depface::services::user: DBへのユーザー保存完了 user_id=mjscs
+2026-04-13 08:27:55  INFO depface: apiルーターを作成しています...
+2026-04-13 08:27:55  INFO depface: サーバー起動中: http://127.0.0.1:3000

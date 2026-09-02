@@ -30,6 +30,7 @@ impl AppService {
         Ok(LoginResponse {
             token,
             user_id: user.user_id,
+            user_name: user.user_name,
         })
     }
 

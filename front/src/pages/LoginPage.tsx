@@ -19,7 +19,7 @@ export default function LoginPage() {
     setLoading(true)
     try {
       const res = await login(userId, password)
-      setAuth({ token: res.token, user_id: res.user_id })
+      setAuth({ token: res.token, user_id: res.user_id ,user_name: res.user_name})
       navigate('/menu')
     } catch (err) {
       setError(err instanceof Error ? err.message : 'エラーが発生しました')

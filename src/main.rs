@@ -53,7 +53,7 @@ async fn seed_initial_user(service: &AppService) {
         info!("ユーザーが存在しません。初期ユーザーを登録します...");
         let admin = CreateUserRequestFromFrontend {
             user_id: "mjscs".to_string(),
-            user_name: "MjsAdmin".to_string(),
+            user_name: "MJS管理者".to_string(),
             email: "admin@example.com".to_string(),
             password: "MJS369CS".to_string(),
         };

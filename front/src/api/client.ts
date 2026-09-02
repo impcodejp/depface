@@ -3,6 +3,7 @@ const BASE = '/api'
 export type LoginResponse = {
   token: string
   user_id: string
+  user_name: string
 }
 
 export type RegisterResponse = {
@@ -11,6 +12,7 @@ export type RegisterResponse = {
   email: string
 }
 
+// ログイン認証API
 export async function login(user_id: string, password: string): Promise<LoginResponse> {
   const res = await fetch(`${BASE}/auth/login`, {
     method: 'POST',
@@ -24,6 +26,7 @@ export async function login(user_id: string, password: string): Promise<LoginRes
   return res.json()
 }
 
+// ログアウトAPI
 export async function logout(token: string): Promise<void> {
   const res = await fetch(`${BASE}/auth/logout`, {
     method: 'POST',
@@ -35,6 +38,7 @@ export async function logout(token: string): Promise<void> {
   }
 }
 
+// ユーザー登録API
 export async function registerUser(
   token: string,
   data: { user_id: string; user_name: string; email: string; password: string }

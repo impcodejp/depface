@@ -4,6 +4,7 @@ import type { ReactNode } from 'react'
 type AuthState = {
   token: string
   user_id: string
+  user_name: string
 } | null
 
 type AuthContextType = {

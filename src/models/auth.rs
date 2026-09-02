@@ -12,4 +12,5 @@ pub struct LoginRequest {
 pub struct LoginResponse {
     pub token: String,
     pub user_id: String,
+    pub user_name: String,
 }
