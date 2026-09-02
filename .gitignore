@@ -1,3 +1,4 @@
 /target
 .env
 sqlx
+front/node_modules
